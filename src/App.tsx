@@ -1,88 +1,155 @@
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import Web3 from 'web3';
+// import { useEffect, useState } from 'react';
+// import axios from 'axios';
 
-interface TokenListData {
-  // Defining the structure of the data
-  tokens: string[];
-}
+// interface TokenListData {
+//   // Defining the structure of the data here
+//   tokens: string[];
+// }
+
+// function App() {
+//   const [data, setData] = useState<TokenListData | null>(null);
+//   const [showTokenList, setShowTokenList] = useState<boolean>(false);
+
+//   useEffect(() => {
+//     // Define the Axios request configuration
+//     const config = {
+//       method: 'get',
+//       maxBodyLength: Infinity,
+//       url: 'https://open-api.openocean.finance/v3/avax/tokenList',
+//       headers: {
+//         Cookie: '__cflb=0H28v9KzzEdj11imvL2rdb9wNdY43F5Yrv6wJiU9ajP',
+//       },
+//     };
+
+//     // Make the Axios request and update the state with the response data
+//     axios
+//       .request(config)
+//       .then((response) => {
+//         setData(response.data);
+//       })
+//       .catch((error) => {
+//         console.error(error);
+//       });
+//   }, []);
+
+//   const toggleTokenList = () => {
+//     setShowTokenList(!showTokenList);
+//   };
+
+//   return (
+//     <div className="App">
+//       <h1>Token List from OpenOcean</h1>
+//       <button onClick={toggleTokenList}>Token List</button>
+//       {showTokenList && data ? (
+//         <pre>{JSON.stringify(data, null, 2)}</pre>
+//       ) : (
+//         <p> </p>
+//       )}
+//     </div>
+//   );
+// }
+
+// export default App;
+
+import React from "react";
+import WalletConnect from "./WalletConnect";
 
 function App() {
-  const [data, setData] = useState<TokenListData | null>(null);
-  const [showTokenList, setShowTokenList] = useState<boolean>(false);
-  const [walletConnected, setWalletConnected] = useState<boolean>(false);
-
-  useEffect(() => {
-    // Define the Axios request configuration
-    const config = {
-      method: 'get',
-      maxBodyLength: Infinity,
-      url: 'https://open-api.openocean.finance/v3/avax/tokenList',
-      headers: {
-        Cookie: '__cflb=0H28v9KzzEdj11imvL2rdb9wNdY43F5Yrv6wJiU9ajP',
-      },
-    };
-
-    // Making the Axios request and update the state with the response data
-    axios
-      .request(config)
-      .then((response) => {
-        setData(response.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
-
-  const toggleTokenList = () => {
-    setShowTokenList(!showTokenList);
-  };
-
-  const connectWallet = async () => {
-    if (typeof window.ethereum !== 'undefined') {
-      try {
-        // Requesting access to the user's MetaMask wallet
-        await window.ethereum.request({ method: 'eth_requestAccounts' });
-
-        // Created a Web3 instance using the MetaMask provider
-        const web3 = new Web3(window.ethereum);
-
-        // Check if the user is connected and get their address
-        const accounts = await web3.eth.getAccounts();
-
-        if (accounts.length > 0) {
-          setWalletConnected(true);
-        }
-      } catch (error) {
-        console.error(error);
-        setWalletConnected(false);
-      }
-    } else {
-      console.error('MetaMask extension not found');
-      setWalletConnected(false);
-    }
-  };
-
   return (
     <div className="App">
-      <h1>Token List from OpenOcean API</h1>
-      {walletConnected ? (
-        <>
-          <button onClick={toggleTokenList}>Toggle Token List</button>
-          {showTokenList && data ? (
-            <pre>{JSON.stringify(data, null, 2)}</pre>
-          ) : (
-            <p>Click the button to display the token list.</p>
-          )}
-        </>
-      ) : (
-        <button onClick={connectWallet}>Connect Wallet</button>
-      )}
+      <h1>Your Wallet App</h1>
+      <WalletConnect />
     </div>
   );
 }
 
 export default App;
+
+// import { useEffect, useState } from 'react';
+// import axios from 'axios';
+// import Web3 from 'web3';
+
+// interface TokenListData {
+//   // Defining the structure of the data
+//   tokens: string[];
+// }
+
+// function App() {
+//   const [data, setData] = useState<TokenListData | null>(null);
+//   const [showTokenList, setShowTokenList] = useState<boolean>(false);
+//   const [walletConnected, setWalletConnected] = useState<boolean>(false);
+
+//   useEffect(() => {
+//     // Define the Axios request configuration
+//     const config = {
+//       method: 'get',
+//       maxBodyLength: Infinity,
+//       url: 'https://open-api.openocean.finance/v3/avax/tokenList',
+//       headers: {
+//         Cookie: '__cflb=0H28v9KzzEdj11imvL2rdb9wNdY43F5Yrv6wJiU9ajP',
+//       },
+//     };
+
+//     // Making the Axios request and update the state with the response data
+//     axios
+//       .request(config)
+//       .then((response) => {
+//         setData(response.data);
+//       })
+//       .catch((error) => {
+//         console.error(error);
+//       });
+//   }, []);
+
+//   const toggleTokenList = () => {
+//     setShowTokenList(!showTokenList);
+//   };
+
+//   const connectWallet = async () => {
+//     if (typeof window.ethereum !== 'undefined') {
+//       try {
+//         // Requesting access to the user's MetaMask wallet
+//         await window.ethereum.request({ method: 'eth_requestAccounts' });
+
+//         // Created a Web3 instance using the MetaMask provider
+//         const web3 = new Web3(window.ethereum);
+
+//         // Check if the user is connected and get their address
+//         const accounts = await web3.eth.getAccounts();
+
+//         if (accounts.length > 0) {
+//           setWalletConnected(true);
+//         }
+//       } catch (error) {
+//         console.error(error);
+//         setWalletConnected(false);
+//       }
+//     } else {
+//       console.error('MetaMask extension not found');
+//       setWalletConnected(false);
+//     }
+//   };
+
+//   return (
+//     <div className="App">
+//       <h1>Token List from OpenOcean API</h1>
+//       {walletConnected ? (
+//         <>
+//           <button onClick={toggleTokenList}>Toggle Token List</button>
+//           {showTokenList && data ? (
+//             <pre>{JSON.stringify(data, null, 2)}</pre>
+//           ) : (
+//             <p>Click the button to display the token list.</p>
+//           )}
+//         </>
+//       ) : (
+//         <button onClick={connectWallet}>Connect Wallet</button>
+//       )}
+//     </div>
+//   );
+// }
+
+// export default App;
 
 // import React, { useEffect, useState } from 'react';
 // import * as BigNumber from 'bignumber.js';
