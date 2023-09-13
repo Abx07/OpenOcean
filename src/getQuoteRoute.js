@@ -4,10 +4,10 @@ let data = 'getBalance() {\n    if(this.address) {\n        let params = {\n    
 let config = {
     method: 'get',
     maxBodyLength: Infinity,
-    url: 'https://open-api.openocean.finance/v1/cross/getBalance?chainId=56&account=0x929B44e589AC4dD99c0282614e9a844Ea9483C69&inTokenAddress=0x55d398326f99059ff775485246999027b3197955,0x55d398326f99059fF775485246999027B3197955',
+    url: 'https://open-api.openocean.finance/cross_chain/v1/cross/quoteByOO?fromSymbol=USDT&fromChainId=56&toSymbol=USDT&toChainId=137&amount=100000000000000000000000',
     headers: {
         'Content-Type': 'application/javascript',
-        'Cookie': '__cflb=0H28v9KzzEdj11imvL2rdb9wNdY43F5YsbKrdp4g3f3'
+        'Cookie': '__cflb=0H28v9KzzEdj11imvLDZLCCRvrLR9RKMeqDcAjCKED3'
     },
     data: data
 };

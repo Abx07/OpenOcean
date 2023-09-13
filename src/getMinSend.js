@@ -4,9 +4,9 @@ let data = '';
 let config = {
   method: 'get',
   maxBodyLength: Infinity,
-  url: 'https://open-api.openocean.finance/v3/bsc/createWallet',
+  url: 'https://open-api.openocean.finance/cross_chain/v1/cross/getMinSend?fromChainId=56&toChainId=137&address=0x55d398326f99059ff775485246999027b3197955',
   headers: { 
-    'Cookie': '__cflb=0H28v9KzzEdj11imvL2rdb9wNdY43F5Yq5hAz6LoBBb'
+    'Cookie': '__cflb=0H28v9KzzEdj11imvLDZLCCRvrLR9RKMornM5MaLjRo'
   },
   data : data
 };
