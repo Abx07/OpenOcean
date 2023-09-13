@@ -1,3 +1,17 @@
+// import React from "react";
+import WalletConnect from "./WalletConnect";
+
+function App() {
+  return (
+    <div className="App">
+      <h1>Your Wallet App</h1>
+      <WalletConnect />
+    </div>
+  );
+}
+
+export default App;
+
 // import { useEffect, useState } from 'react';
 // import axios from 'axios';
 
@@ -51,19 +65,7 @@
 
 // export default App;
 
-import React from "react";
-import WalletConnect from "./WalletConnect";
 
-function App() {
-  return (
-    <div className="App">
-      <h1>Your Wallet App</h1>
-      <WalletConnect />
-    </div>
-  );
-}
-
-export default App;
 
 // import { useEffect, useState } from 'react';
 // import axios from 'axios';
